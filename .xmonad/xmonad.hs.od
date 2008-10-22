@@ -1,0 +1,25 @@
+import XMonad
+import XMonad.Actions.CopyWindow
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
+import qualified XMonad.StackSet as W
+import XMonad.Util.EZConfig
+ 
+main = xmonad $ defaultConfig
+                { manageHook = manageDocks <+> manageHook defaultConfig
+                , logHook    = ewmhDesktopsLogHook
+                , layoutHook = ewmhDesktopsLayout $ avoidStruts
+                                 $ layoutHook defaultConfig
+                , modMask    = mod4Mask
+                }
+                `additionalKeysP` myKeys
+ 
+myWorkspaces = map (:[]) ['1' .. '9']
+ 
+myKeys :: [([Char], X ())]
+myKeys = [ ("M-S-c", kill1)
+         ]
+         -- This enables view switching, window shifting, and window copying
+         ++ [("M" ++ m ++ ('-':k:[]) , windows $ f i)
+                 | (i, k) <- zip myWorkspaces ['1'..'9']
+                 , (f, m) <- [(W.view, ""), (W.shift, "-S"), (copy, "-C-S")]]

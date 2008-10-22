@@ -1,0 +1,151 @@
+*background:  #333333
+*foreground:  #efefcf
+!Colors
+! Black
+*color0:      #5A5A5A
+*color8:      #3e3e3e
+! Red
+*color1:      #FF4747
+*color9:      #FF6767
+! Green
+*color2:      #AFC81C
+*color10:     #bFC81C
+! Yellow
+*color3:      #FDD338
+*color11:     #F4D461
+! Blue
+*color4:      #619AF4
+*color12:     #5496FF
+! Purple
+*color5:      #5F5A90
+*color13:     #826AB1
+! Cyan
+*color6:      #47E0FF
+*color14:     #2ED9FB
+! White
+*color7:      #FFFFFF
+*color15:     #DEDEDE
+! Orange
+*color16:     #FFB000
+
+
+!Xft settings
+Xft.dpi:                96
+Xft.hinting:            1
+Xft.hintstyle:          hintfull
+Xft.antialias:          1 
+Xft.rgba:               rgb
+
+
+!URxvt settings
+URxvt.urlLauncher:      firefox
+!urxvt*font:     xft:Bitstream Vera Sans Mono:pixelsize=9
+urxvt.font    xft:DejaVu Sans Mono-10
+URxvt*boldFont:   xft:Bitstream Vera Sans Mono:pixelsize=9
+!URxvt*font:    xft:LucidaMacBold:pixelsize=7
+URxvt*italicFont: xft:segoe ui:pixelsize=9
+URxvt*bolditalicFont: xft:Bitstream Vera Sans Mono:pixelsize=9
+URxvt*scrollBar:  false
+URxvt*internalBorder: 6
+
+URxvt.background: #010101
+!URxvt.foreground:  #ffffff
+!URxvt.termName:           string
+!URxvt.geometry:           128x64
+!URxvt.reverseVideo:       boolean
+!URxvt.loginShell:         boolean
+!URxvt.jumpScroll:         boolean
+!URxvt.skipScroll:         boolean
+!URxvt.pastableTabs:       boolean
+!URxvt.scrollstyle:        mode
+!URxvt.scrollBar_right:    boolean
+!URxvt.scrollBar_floating: boolean
+!URxvt.scrollBar_align:    mode
+!URxvt.thickness:          number
+!URxvt.scrollTtyOutput:    boolean
+!URxvt.scrollTtyKeypress:  boolean
+!URxvt.scrollWithBuffer:   boolean
+URxvt.inheritPixmap:      true
+URxvt.transparent:        false
+URxvt.tintColor:          #333333
+URxvt.shading:            0
+URxvt.fading:             0
+URxvt.fadeColor:          #222222
+!URxvt.utmpInhibit:        boolean
+URxvt.urgentOnBell:       true
+!URxvt.visualBell:         boolean
+!URxvt.mapAlert:           boolean
+!URxvt.meta8:              boolean
+URxvt.mouseWheelScrollPage:   True
+!URxvt.tripleclickwords:   boolean
+!URxvt.insecure:           boolean
+!URxvt.cursorUnderline:    boolean
+URxvt.cursorBlink:        true
+!URxvt.pointerBlank:       boolean
+!URxvt.colorBD:            color
+!URxvt.colorIT:            color
+!URxvt.colorUL:            color
+!URxvt.colorRV:            color
+!URxvt.underlineColor:     color
+!URxvt.scrollColor:        color
+!URxvt.troughColor:        color
+!URxvt.highlightColor:     color
+URxvt.cursorColor:        #afc81c
+!URxvt.cursorColor2:       color
+URxvt.pointerColor:       #afc81c
+!URxvt.pointerColor2:      color
+!URxvt.borderColor:        color
+!URxvt.intensityStyles:    boolean
+!URxvt.inputMethod:        name
+!URxvt.preeditType:        style
+!URxvt.imLocale:           string
+!URxvt.imFont:             fontname
+URxvt.title:               URxvt
+!URxvt.iconName:           string
+!URxvt.saveLines:          number
+!URxvt.depth:              number
+!URxvt.transient-for:      windowid
+!URxvt.override-redirect:  boolean
+!URxvt.hold:               boolean
+!URxvt.externalBorder:     number
+!URxvt.internalBorder:     number
+URxvt.borderLess:         true
+!URxvt.skipBuiltinGlyphs:  boolean
+!URxvt.lineSpace:          number
+!URxvt.pointerBlankDelay:  number
+!URxvt.backspacekey:       string
+!URxvt.deletekey:          string
+!URxvt.selectstyle:        mode
+!URxvt.print-pipe:         string
+!URxvt.modifier:           modifier
+!URxvt.cutchars:           string
+!URxvt.answerbackString:   string
+!URxvt.secondaryScreen:    boolean
+!URxvt.secondaryScroll:    boolean
+!URxvt.perl-lib:           string
+!URxvt.perl-eval:          perl-eval
+!URxvt.perl-ext-common:    string
+!URxvt.perl-ext:           string
+!URxvt.iso14755_52:        boolean
+URxvt*keysym.sym:         keysym
+URxvt.keysym.Delete:         \b
+
+
+
+!xterm settings
+xterm*dynamicColors:    true
+!xterm*utf8:             2
+xterm*eightBitInput:    true
+xterm*saveLines:        32767
+xterm*scrollTtyKeypress:true
+xterm*scrollTtyOutput:  false
+xterm*scrollBar:        false
+xterm*loginShell:       true
+xterm*faceName:         Bitstream Vera Sans Mono:pixelsize=10
+xterm*jumpScroll:       true
+xterm*multiScroll:      true
+xterm*toolBar:          true
+
+
+Xcursor.theme: Shere_Khan_Black_Hand
+Xcursor.size: 12

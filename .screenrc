@@ -1,0 +1,52 @@
+unsetenv DISPLAY
+#screen -t  Log 0       mtail -f -n 25 /var/log/everything/current
+autodetach              on
+crlf                    off
+deflogin                off
+defsilence              off
+hardcopy_append on
+nethack                 off
+startup_message off
+vbell                   off
+defutf8                 off
+efscrollback   10000
+msgminwait              2
+silencewait             15
+
+shell                   -$SHELL
+shelltitle              "Shell"
+
+hardstatus alwayslastline "%{b}[ %{B}%H %{b}][%{w}%?%-Lw%?%{b}(%{W}%n*%f%t%?(%u)%?%{b})%{w}%?%+Lw%?%?%= %{b}][%{B} %d/%m %{W}%C%a %{b}]"
+sorendition     Wk
+
+activity        "%C -> %n%f %t Actividad!"
+
+bell            "%C -> %n%f %t Bell!~"
+pow_detach_msg  "CHAU"
+vbell_msg               " *beep* "
+bind .
+bind ^\
+bind \\
+bind m screen -t CenterICQ      centericq
+bind e screen -t Mutt           mutt
+bind g screen -t Gentoo         elinks
+bind i screen -t IRC            irssi
+bind o screen -t Orpheus        orpheus
+bind r screen -t Root           su -
+bind v screen -t Vim            vim
+bind w screen -t WWW            elinks
+bind f screen -t FTP            yafc
+bind X lockscreen
+msgwait 2
+
+# enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+termcapinfo rxvt ti@:te@
+#
+# # change window with ALT-; ALT-'
+bindkey "^[;" prev
+bindkey "^['" next
+
+# add CPU idle/sustem/user/interrupt stats
+#backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
+caption always '%{= kk} %= %100` %='
+
