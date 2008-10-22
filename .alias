@@ -1,0 +1,5 @@
+#alias suspend="sudo pmi action suspend force"
+alias suspend="sudo pmi action suspend"
+alias hibernate="sudo pmi action hibernate force"
+alias wifi="sudo ifconfig ra0 up ; sudo iwconfig ra0 essid fuckbush ; sudo dhclient ra0"
+alias superbrightscreen="sudo setpci -s 00:02.1 f4.b=ff"
