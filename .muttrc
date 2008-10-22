@@ -1,0 +1,248 @@
+# Sample ~/.muttrc for SuSE Linux
+
+# Setting
+set pager_context=4
+set pager_index_lines=10
+set pager_stop
+set imap_user = 'ews@folksonomy.com'
+set spoolfile = imaps://imap.gmail.com:993/INBOX
+#set mbox=~/mbox # Where is my main mailbox (where should read mail go)
+set realname="Juan Pablo Puerta"
+set mbox_type=Maildir
+#set folder="~/Maildir"
+set folder = "imaps://imap.gmail.com:993"
+set mask="!^\\.[^.]"
+set mbox="~/Maildir"
+#set record="+.Sent"
+set smtp_url="smtp://username@smtp.gmail.com:587/"
+set record="+[Gmail]/Sent Mail"
+#set postponed="+.Drafts"
+set postponed="+[Gmail]/Drafts"
+#set spoolfile="~/Maildir"
+# previously do:  mkdir -p ~/.mutt/cache/{headers,bodies}
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file=~/.mutt/certificates 
+set move=no
+set delete=yes 
+set edit_hdrs
+set include
+set reply_to
+set abort_nosubject=no
+alternates '(username|altusername)([-+].*)?@.*'
+# set hdr_format="%4C %Z %{%m/%d} %-15.15F (%4c) %s" # format of the index
+
+# Customized headers
+#unmy_hdr *                      # remove all extra headers first.
+#
+my_hdr From: Juan Pablo Puerta <ews@folksonomy.com>
+
+set signature='~/.signature' 
+
+#sendmail
+set sendmail="/usr/bin/nbsmtp -d sindominio.net -h mail.sindominio.net -f ews@sindominio.net"
+
+# Set up mailboxes by scanning for all subfolders in ~/Maildir
+mailboxes `echo -n "+ "; find ~/Maildir -type d -name ".*" -printf "+'%f' "`  
+
+#Add macros to make the folder browser usable by always using the mailboxes
+#setup above:
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+#To additionally get straight to the folder browser when copying, moving and
+#attaching mail, add the following macros
+
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+
+#vim with spelling highligh
+#set editor="vim \"+normal \\\\ec\" +/^$/"
+set editor = "/usr/bin/vim -f -c 'setlocal spell spelllang=en_us' -c 'set filetype=mail'"
+
+#identities
+alias identity_1         EwS                   <ews@sindominio.net>
+alias identity_2         Juan Pablo Puerta      <ewsdk@yahoo.es>
+macro compose v "<edit-from>^Uidentity_<tab>" "Select from"
+#Write email and while in compose menu press 'v' - you should see a menu with all your identities, choose one, press Enter, done.
+
+# Binding
+bind  pager <backspace> previous-page
+bind  pager -           previous-line
+bind  pager \eOm        previous-line
+bind  pager +           next-line
+bind  pager \eOk        next-line
+bind  pager \eOM        next-line
+bind  pager \e[1~       top
+bind  pager \e[4~       bottom
+
+bind  index <backspace> previous-entry
+bind  index -           previous-entry
+bind  index \eOm        previous-entry
+bind  index +           next-entry
+bind  index \eOk        next-entry
+bind  index \eOM        display-message
+bind  index \e[H        first-entry
+bind  index \e[F        last-entry
+bind  index \e[1~       first-entry
+bind  index \e[4~       last-entry
+
+bind  alias   <space>   select-entry
+bind  alias   x         exit
+bind  attach  x         exit
+bind  browser x         exit
+
+# What headers to show
+ignore *
+unignore from: date subject to cc reply-to:
+unignore resent- x-resent
+
+# What order to show them
+unhdr_order *
+hdr_order Date: From: To: Reply-To: Cc: Subject:
+
+# On to the colors
+color	attachment  blue         default
+color	header      green        default  "^message-id:"
+color	header      green        default  "^x-mailer:"
+color	header      green        default  "^user-agent:"
+color	header      blue         default  "^date: "
+color	header      brightblue   default  "^from: "
+color	header      green        default  "^subject: "
+color	header      brightblue   default  "^to: "
+color	header      brightblue   default  "^cc: "
+color	header      brightblue   default  "^reply-to: "
+color	index       green        default  ~F
+color	index       red          default  ~D
+color	index       blue         default  ~T
+color	index       brightblue   default  ~N
+color	indicator   brightwhite  blue
+color	markers     red          default
+color	quoted      magenta      default
+color	signature   brightblue   default
+color	status      brightwhite  green
+color	tilde       cyan         default
+color	tree        blue         default
+color	body        black        default  "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+
+# Command formats for gpg.
+# 
+# This version uses gpg-2comp from 
+#   http://muppet.faveve.uni-stuttgart.de/~gero/gpg-2comp.tar.gz
+#
+# $Id: gpg.rc,v 3.1 2002/03/26 22:23:58 roessler Exp $
+#
+# %p    The empty string when no passphrase is needed,
+#       the string "PGPPASSFD=0" if one is needed.
+#
+#       This is mostly used in conditional % sequences.
+#
+# %f    Most PGP commands operate on a single file or a file
+#       containing a message.  %f expands to this file's name.
+#
+# %s    When verifying signatures, there is another temporary file
+#       containing the detached signature.  %s expands to this
+#       file's name.
+#
+# %a    In "signing" contexts, this expands to the value of the
+#       configuration variable $pgp_sign_as.  You probably need to
+#       use this within a conditional % sequence.
+#
+# %r    In many contexts, mutt passes key IDs to pgp.  %r expands to
+#       a list of key IDs.
+
+# Note that we explicitly set the comment armor header since GnuPG, when used
+# in some localiaztion environments, generates 8bit data in that header, thereby
+# breaking PGP/MIME.
+
+# decode application/pgp
+set pgp_decode_command="/usr/local/bin/gpg  --charset utf-8   %?p?--passphrase-fd 0? --no-verbose --quiet  --batch  --output - %f"
+
+# verify a pgp/mime signature
+set pgp_verify_command="/usr/local/bin/gpg   --no-verbose --quiet  --batch  --output - --verify %s %f"
+
+# decrypt a pgp/mime attachment
+set pgp_decrypt_command="/usr/local/bin/gpg   --passphrase-fd 0 --no-verbose --quiet  --batch  --output - %f"
+
+# create a pgp/mime signed attachment
+# set pgp_sign_command="/usr/local/bin/gpg-2comp --comment '' --no-verbose --batch  --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_sign_command="/usr/local/bin/gpg    --no-verbose --batch --quiet   --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+
+# create a application/pgp signed (old-style) message
+# set pgp_clearsign_command="/usr/local/bin/gpg-2comp --comment ''  --no-verbose --batch  --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_clearsign_command="/usr/local/bin/gpg   --charset utf-8 --no-verbose --batch --quiet   --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+
+# create a pgp/mime encrypted attachment
+# set pgp_encrypt_only_command="pgpewrap gpg-2comp  -v --batch  --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_only_command="pgpewrap /usr/local/bin/gpg  --charset utf-8    --batch  --quiet  --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+
+# create a pgp/mime encrypted and signed attachment
+# set pgp_encrypt_sign_command="pgpewrap gpg-2comp  --passphrase-fd 0 -v --batch  --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap /usr/local/bin/gpg  --charset utf-8 --passphrase-fd 0  --batch --quiet  --no-verbose  --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+
+# import a key into the public key ring
+set pgp_import_command="/usr/local/bin/gpg  --no-verbose --import -v %f"
+
+# export a key from the public key ring
+set pgp_export_command="/usr/local/bin/gpg   --no-verbose --export --armor %r"
+
+# verify a key
+set pgp_verify_key_command="/usr/local/bin/gpg   --verbose --batch  --fingerprint --check-sigs %r"
+
+# read in the public key ring
+set pgp_list_pubring_command="/usr/local/bin/gpg   --no-verbose --batch --quiet   --with-colons --list-keys %r" 
+
+# read in the secret key ring
+set pgp_list_secring_command="/usr/local/bin/gpg   --no-verbose --batch --quiet   --with-colons --list-secret-keys %r" 
+
+# fetch keys
+# set pgp_getkeys_command="pkspxycwrap %r"
+
+# pattern for good signature - may need to be adapted to locale!
+
+set pgp_good_sign="^gpg: Good signature from"
+
+# OK, here's a version which uses gnupg's message catalog:
+# set pgp_good_sign="`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
+#set up the sidebar, default not visible
+set sidebar_width=12
+set sidebar_visible=no
+set sidebar_delim='|'
+
+# which mailboxes to list in the sidebar
+mailboxes =inbox =ml
+#
+# # color of folders with new mail
+color sidebar_new yellow default
+#
+# # ctrl-n, ctrl-p to select next, prev folder
+# # ctrl-o to open selected folder
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+#
+# # I don't need these.  just for documentation purposes.  See below.
+# sidebar-scroll-up
+# sidebar-scroll-down
+#
+# # b toggles sidebar visibility
+macro index b '&lt;enter-command&gt;toggle sidebar_visible&lt;enter&gt;'
+macro pager b '&lt;enter-command&gt;toggle sidebar_visible&lt;enter&gt;'
+#
+# # Remap bounce-message function to "B"
+bind index B bounce-message
+#
+# #
+# # Mario Holbe suggests:
+# macro index b '&lt;enter-command&gt;toggle sidebar_visible&lt;enter&gt;&lt;refresh&gt;'
+# macro pager b '&lt;enter-command&gt;toggle sidebar_visible&lt;enter&gt;&lt;redraw-screen&gt;'
+# #
+alias Paolo Paolo Privitera <pppaolo@gmail.com>
+alias Marcos msantos@funcovi.es
+alias justine.wolitzer justine wolitzer <justine.wolitzer@gmail.com>
+alias Jorge Jorge Bueno <jorgebm55@yahoo.es>
+alias Ana_Corral Ana Corral <corral_ana@yahoo.es>
