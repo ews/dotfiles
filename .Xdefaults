@@ -1,134 +1,57 @@
-*background:  #333333
-*foreground:  #efefcf
-!Colors
-! Black
-*color0:      #5A5A5A
-*color8:      #3e3e3e
-! Red
-*color1:      #FF4747
-*color9:      #FF6767
-! Green
-*color2:      #AFC81C
-*color10:     #bFC81C
-! Yellow
-*color3:      #FDD338
-*color11:     #F4D461
-! Blue
-*color4:      #619AF4
-*color12:     #5496FF
-! Purple
-*color5:      #5F5A90
-*color13:     #826AB1
-! Cyan
-*color6:      #47E0FF
-*color14:     #2ED9FB
-! White
-*color7:      #FFFFFF
-*color15:     #DEDEDE
-! Orange
-*color16:     #FFB000
+Xft.antialias:           true
+Xft.hinting:             true
+Xft.hintstyle:           3
 
+c64*font:                xft:Adore64:autohint=false:antialias=false:size=7
+c64*background:          #3a319c
+c64*foreground:          #7b71d6
 
-!Xft settings
-Xft.dpi:                96
-Xft.hinting:            1
-Xft.hintstyle:          hintfull
-Xft.antialias:          1 
-Xft.rgba:               rgb
+xterm*faceName:          inconsolata
+xterm*faceSize:          8
+xterm*geometry:          120x40
+xterm*boldMode:          false
+xterm*cutNewline:        false
+xterm*on4Clicks:         group
+xterm*on5Clicks:         page
+xterm*internalBorder:    1
+xterm*background:        #222222
+xterm*foreground:        #ddccbb
+xterm*metaSendsEscape:   true
+xterm*colorBD:           #ffffff
+xterm*colorBDMode:       true
+xterm*cursorBlink:       false
+xterm*cursorColor:       #ff9900
+xterm*veryBoldColors:    14
+xterm*loginShell:        true
+xterm*charClass:         33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48,63:48,61:48,44:48,38:48,59:48
+xterm*jumpScroll:        true
+xterm*multiScroll:       true
+xterm*saveLines:         5120
 
-
-!URxvt settings
-URxvt.urlLauncher:      firefox
-!urxvt*font:     xft:Bitstream Vera Sans Mono:pixelsize=9
-urxvt.font    xft:DejaVu Sans Mono-10
-URxvt*boldFont:   xft:Bitstream Vera Sans Mono:pixelsize=9
-!URxvt*font:    xft:LucidaMacBold:pixelsize=7
-URxvt*italicFont: xft:segoe ui:pixelsize=9
-URxvt*bolditalicFont: xft:Bitstream Vera Sans Mono:pixelsize=9
-URxvt*scrollBar:  false
-URxvt*internalBorder: 6
-
-URxvt.background: #010101
-!URxvt.foreground:  #ffffff
-!URxvt.termName:           string
-!URxvt.geometry:           128x64
-!URxvt.reverseVideo:       boolean
-!URxvt.loginShell:         boolean
-!URxvt.jumpScroll:         boolean
-!URxvt.skipScroll:         boolean
-!URxvt.pastableTabs:       boolean
-!URxvt.scrollstyle:        mode
-!URxvt.scrollBar_right:    boolean
-!URxvt.scrollBar_floating: boolean
-!URxvt.scrollBar_align:    mode
-!URxvt.thickness:          number
-!URxvt.scrollTtyOutput:    boolean
-!URxvt.scrollTtyKeypress:  boolean
-!URxvt.scrollWithBuffer:   boolean
-URxvt.inheritPixmap:      true
-URxvt.transparent:        false
-URxvt.tintColor:          #333333
-URxvt.shading:            0
-URxvt.fading:             0
-URxvt.fadeColor:          #222222
-!URxvt.utmpInhibit:        boolean
-URxvt.urgentOnBell:       true
-!URxvt.visualBell:         boolean
-!URxvt.mapAlert:           boolean
-!URxvt.meta8:              boolean
-URxvt.mouseWheelScrollPage:   True
-!URxvt.tripleclickwords:   boolean
-!URxvt.insecure:           boolean
-!URxvt.cursorUnderline:    boolean
-URxvt.cursorBlink:        true
-!URxvt.pointerBlank:       boolean
-!URxvt.colorBD:            color
-!URxvt.colorIT:            color
-!URxvt.colorUL:            color
-!URxvt.colorRV:            color
-!URxvt.underlineColor:     color
-!URxvt.scrollColor:        color
-!URxvt.troughColor:        color
-!URxvt.highlightColor:     color
-URxvt.cursorColor:        #afc81c
-!URxvt.cursorColor2:       color
-URxvt.pointerColor:       #afc81c
-!URxvt.pointerColor2:      color
-!URxvt.borderColor:        color
-!URxvt.intensityStyles:    boolean
-!URxvt.inputMethod:        name
-!URxvt.preeditType:        style
-!URxvt.imLocale:           string
-!URxvt.imFont:             fontname
-URxvt.title:               URxvt
-!URxvt.iconName:           string
-!URxvt.saveLines:          number
-!URxvt.depth:              number
-!URxvt.transient-for:      windowid
-!URxvt.override-redirect:  boolean
-!URxvt.hold:               boolean
-!URxvt.externalBorder:     number
-!URxvt.internalBorder:     number
-URxvt.borderLess:         true
-!URxvt.skipBuiltinGlyphs:  boolean
-!URxvt.lineSpace:          number
-!URxvt.pointerBlankDelay:  number
-!URxvt.backspacekey:       string
-!URxvt.deletekey:          string
-!URxvt.selectstyle:        mode
-!URxvt.print-pipe:         string
-!URxvt.modifier:           modifier
-!URxvt.cutchars:           string
-!URxvt.answerbackString:   string
-!URxvt.secondaryScreen:    boolean
-!URxvt.secondaryScroll:    boolean
-!URxvt.perl-lib:           string
-!URxvt.perl-eval:          perl-eval
-!URxvt.perl-ext-common:    string
-!URxvt.perl-ext:           string
-!URxvt.iso14755_52:        boolean
-URxvt*keysym.sym:         keysym
-URxvt.keysym.Delete:         \b
+urxvt.font:              xft:inconsolata:pixelsize=12
+urxvt.termName:          rxvt
+urxvt.scrollBar:         false
+!urxvt.backgroundPixmap:  /home/vermaden/.themes/urxvt.back.xpm
+urxvt.imLocale:          en_US.UTF-8
+urxvt.loginShell:        true
+urxvt.saveLines:         5120
+urxvt.geometry:          190x70
+urxvt.inheritPixmap:     false
+urxvt.shading:           30
+urxvt.fading:            35 
+urxvt.xftAntialias:      true
+urxvt.jumpScroll:        true
+urxvt.tintColor:         white
+urxvt.internalBorder:    0
+urxvt.cursorBlink:       false
+urxvt.cursorColor:       #dd9900
+urxvt.cursorColor2:      #000000
+urxvt.background:        #000000
+urxvt.foreground:        #ddccbb
+urxvt.colorBD:           #ffffff
+urxvt.colorIT:           #bbbbbb
+urxvt.colorUL:           #999999
+urxvt.underlineColor:    #999999
 
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: firefox
@@ -136,20 +59,103 @@ URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-] 
 
 
-!xterm settings
-xterm*dynamicColors:    true
-!xterm*utf8:             2
-xterm*eightBitInput:    true
-xterm*saveLines:        32767
-xterm*scrollTtyKeypress:true
-xterm*scrollTtyOutput:  false
-xterm*scrollBar:        false
-xterm*loginShell:       true
-xterm*faceName:         Bitstream Vera Sans Mono:pixelsize=10
-xterm*jumpScroll:       true
-xterm*multiScroll:      true
-xterm*toolBar:          true
+!black
+*color0:  #222222
+*color8:  #554444
 
+!!red
+*color1:  #884422
+*color9:  #cc5533
+!
+!!green
+*color2:  #778800
+*color10: #88aa22
+!
+!!yellow
+*color3:  #887733
+*color11: #aa9955
+!
+!!blue
+*color4:  #8866cc
+*color12: #9977dd
+!
+!!magneta
+*color5:  #885500
+*color13: #996600
+!
+!!cyan
+*color6:  #5555aa
+*color14: #7777aa
+!
+!!white
+*color7:  #bbaa99
+*color15: #ddccaa
+!
+!xclock*hourColor:     rgb:0/0/0
+xclock*minuteColor:   rgb:8/8/8
+xclock*secondColor:   rgb:b/b/b
+xclock*majorColor:    rgb:0/0/0
+xclock*minorColor:    rgb:6/6/6
 
-Xcursor.theme: Shere_Khan_Black_Hand
-Xcursor.size: 12
+xcalc*ti.button1.vertDistance:          4
+xcalc*ti.button2.vertDistance:          4
+xcalc*ti.button3.vertDistance:          4
+xcalc*ti.button4.vertDistance:          4
+xcalc*ti.button5.vertDistance:          4
+xcalc*ti.background:                    gray90
+xcalc*ti.bevel.borderColor:             gray65
+xcalc*ti.bevel.borderWidth:             1
+xcalc*ti.bevel.vertDistance:            4
+xcalc*ti.bevel.defaultDistance:         0
+xcalc*ti.bevel.background:              rgb:b/c/b
+xcalc*ti.bevel.screen*background:       rgb:b/c/b
+xcalc*ti.bevel.screen.borderColor:      rgb:b/c/b
+xcalc*ti.bevel.screen.vertDistance:     10
+xcalc*ti.bevel.screen.horizDistance:    10
+xcalc*ti.bevel.screen*left:             chainLeft
+xcalc*ti.bevel.screen*right:            chainRight
+xcalc*ti.bevel.screen*top:              chainTop
+xcalc*ti.bevel.screen*bottom:           chainBottom
+xcalc*ti.bevel.screen*LCD.foreground:   gray10
+xcalc*ti.bevel.screen*INV.vertDistance: 0
+xcalc*ti.Command.borderColor:           gray65
+xcalc*ti.Command.background:            gray85
+xcalc*ti.Command.foreground:            gray30
+xcalc*ti.button5.background:            rgb:e/b/b
+xcalc*ti.button20.background:           rgb:e/d/c
+xcalc*ti.button25.background:           rgb:e/d/c
+xcalc*ti.button30.background:           rgb:e/d/c
+xcalc*ti.button35.background:           rgb:e/d/c
+xcalc*ti.button40.background:           rgb:b/b/e
+xcalc*ti.button22.background:           gray95
+xcalc*ti.button23.background:           gray95
+xcalc*ti.button24.background:           gray95
+xcalc*ti.button27.background:           gray95
+xcalc*ti.button28.background:           gray95
+xcalc*ti.button29.background:           gray95
+xcalc*ti.button32.background:           gray95
+xcalc*ti.button33.background:           gray95
+xcalc*ti.button34.background:           gray95
+xcalc*ti.button37.background:           gray95
+xcalc*ti.button38.background:           gray95
+xcalc*ti.button39.background:           gray95
+
+xmessage*form.okay.shapeStyle:          rectangle
+xmessage*form.okay.background:          IndianRed
+xmessage*form.okay.foreground:          rgb:e/b/b
+xmessage*message*background:            ivory3
+xmessage*background:                    gray85
+xmessage*foreground:                    gray15
+xmessage*Scrollbar.width:               1
+xmessage*Scrollbar.borderWidth:         0
+xmessage*Text.?.cursorColor:            rgb:d/5/5
+xmessage*Text.borderColor:              gray65
+xmessage*Text*background:               gray95
+xmessage*Command.highlightThickness:    1
+xmessage*Command.internalWidth:         5
+xmessage*Command.internalHeight:        3
+xmessage*Command.borderColor:           gray40
+xmessage*Command.shapeStyle:            Rectangle
+xmessage*Command.background:            gray80
+xmessage*font:                          -*-clean-*-*-*-*-*-*-*-*-*-*-iso8859-2
+  
