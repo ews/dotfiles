@@ -1,25 +1,30 @@
 import XMonad
-import XMonad.Actions.CopyWindow
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.EwmhDesktops
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
- 
-main = xmonad $ defaultConfig
-                { manageHook = manageDocks <+> manageHook defaultConfig
-                , logHook    = ewmhDesktopsLogHook
-                , layoutHook = ewmhDesktopsLayout $ avoidStruts
-                                 $ layoutHook defaultConfig
-                , modMask    = mod4Mask
-                }
-                `additionalKeysP` myKeys
- 
-myWorkspaces = map (:[]) ['1' .. '9']
- 
-myKeys :: [([Char], X ())]
-myKeys = [ ("M-S-c", kill1)
-         ]
-         -- This enables view switching, window shifting, and window copying
-         ++ [("M" ++ m ++ ('-':k:[]) , windows $ f i)
-                 | (i, k) <- zip myWorkspaces ['1'..'9']
-                 , (f, m) <- [(W.view, ""), (W.shift, "-S"), (copy, "-C-S")]]
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
+
+myManageHook = composeAll [
+    className =? "Gimp" --> doFloat,
+    className =? "Vncviewer" --> doFloat
+               ]
+
+main = do
+
+ xmproc <- spawnPipe "/home/ews/bin/xmobar-0.9.bin /home/ews/.xmonad/xmobar"
+ xmonad $ defaultConfig {
+        manageHook = manageDocks <+> manageHook defaultConfig,
+        layoutHook = avoidStruts  $  layoutHook defaultConfig,
+        logHook = dynamicLogWithPP $ xmobarPP {
+                    ppOutput = hPutStrLn xmproc
+                  , ppTitle = xmobarColor "green" "" . shorten 50
+                  },
+        modMask = mod4Mask     -- Rebind Mod to the Windows key
+      } `additionalKeys`
+      [((mod4Mask .|. shiftMask, xK_z),
+        spawn "xscreensaver-command -lock"),
+       ((controlMask, xK_Print), spawn "scrot -s"),
+       ((0, xK_Print), spawn "scrot")
+      ]
+

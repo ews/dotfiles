@@ -31,7 +31,6 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageHelpers
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
-import XMonad.Layout.Tabbed
 
 
 -- Border colors for unfocused and focused windows, respectively.
@@ -62,7 +61,7 @@ myBorderWidth   = 1
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+myModMask       = modr1Mask
 
 -- The mask for the numlock key. Numlock status is "masked" from the
 -- current modifier status, so the keybindings will work with numlock on or
@@ -92,7 +91,7 @@ myNumlockMask   = mod2Mask
 --
 -- Fields are: top, bottom, left, right.
 --
-myDefaultGaps   = [(15,0,0,0)]
+myDefaultGaps   = [(16,0,0,0)]
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -103,7 +102,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     
     -- launch a terminal
-    , ((modMask ,               xK_F2), spawn "urxvtcd")
+    , ((modMask ,               xK_F2), spawn "urxvt")
 
     -- launch dmenu
     , ((modMask,               xK_p     ), spawn "exe=`dmenu_path | dmenu -nb '#2c2c2c' -nf '#EEEEEE' -sb '#556088'` && eval \"exec $exe\"")
@@ -160,13 +159,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- toggle the status bar gap
-    , ((modMask              , xK_b     ),
-          modifyGap (\i n -> let x = (XMonad.defaultGaps conf ++ repeat (0,0,0,0)) !! i
-                             in if n == x then (0,0,0,0) else x))
+    --, ((modMask              , xK_b     ),
+    --      modifyGap (\i n -> let x = (XMonad.defaultGaps conf ++ repeat (0,0,0,0)) !! i
+    --                         in if n == x then (0,0,0,0) else x))
 
- -- conflicts with firefox / vimperator
- --   , ((modMask ,               xK_Right),  nextWS)
- --   , ((modMask ,               xK_Left),    prevWS)
+    , ((modMask ,               xK_Right),  nextWS)
+    , ((modMask ,               xK_Left),    prevWS)
 
     -- Quit xmonad
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -209,8 +207,8 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
---    , ((modMask, button5), (\_ -> moveTo Next NonEmptyWS))
---    , ((modMask, button4), (\_ -> moveTo Prev NonEmptyWS ))
+    , ((modMask, button5), (\_ -> moveTo Next NonEmptyWS))
+    , ((modMask, button4), (\_ -> moveTo Prev NonEmptyWS ))
 
     , ((modMask .|. shiftMask, button5), (\w -> focus w >> kill ))
     ]
@@ -226,9 +224,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-
 myLayout = avoidStruts (smartBorders (tiled ||| Full ||| Mirror tiled ))
-
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -278,7 +274,7 @@ customManageHook = composeAll . concat $
    [ [ className   =? c                 --> doFloat | c <- myFloats ]
    , [ title       =? t                 --> doFloat | t <- myOtherFloats ]
    , [ resource    =? r                 --> doIgnore | r <- myIgnores ]
-   , [ className   =? "Firefox-bin"     --> doF (W.shift "2:web") ]
+--   , [ className   =? "Firefox-bin"     --> doF (W.shift "2:web") ]
    , [ className   =? "Opera"           --> doF (W.shift "2:web") ]
    , [ className   =? "Akregator"       --> doF (W.shift "2:web") ]
    , [ className   =? "Xchat"           --> doF (W.shift "5:chat") ]
@@ -340,7 +336,7 @@ main = do
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
         borderWidth        = myBorderWidth,
-        defaultGaps        = myDefaultGaps,
+--        defaultGaps        = myDefaultGaps,
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         modMask            = myModMask,
@@ -353,5 +349,5 @@ main = do
             fg    = "'#777777'"
             bg    = "'#2c2c2c'"
             fn    = "'-*-terminus-*-*-*-*-12-*-*-*-*-*-*'"
-            flags = "-e '' -x 17 -w 1000 -h 14 -ta l -fg " ++ fg ++ " -bg " ++ bg ++ " -fn " ++ fn
+            flags = "-e '' -x 17 -w 553 -h 16 -ta l -fg " ++ fg ++ " -bg " ++ bg ++ " -fn " ++ fn
  
