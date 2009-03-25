@@ -23,10 +23,10 @@ setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
 # Autoload zsh modules when they are referenced
-zmodload -a zsh/stat stat
-zmodload -a zsh/zpty zpty
-zmodload -a zsh/zprof zprof
-zmodload -ap zsh/mapfile mapfile
+#zmodload -a zsh/stat stat
+#zmodload -a zsh/zpty zpty
+#zmodload -a zsh/zprof zprof
+#zmodload -ap zsh/mapfile mapfile
 
 
 PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/home/ews/bin:$PATH"
@@ -210,7 +210,10 @@ elif [[ $TERM == "xterm" || $TERM == "urxvt" ]]; then
 fi
 }
 
-
+#hack by jp
+if [[ $TERM == "rxvt-color" ]]; then 
+  export TERM="rxvt"
+fi
 
 function precmd {
 title zsh "urxvt $PWD"
@@ -232,4 +235,12 @@ else
   title $cmd[1]:t "urxvt $cmd[2,-1]"
 fi
 }
+
+setopt emacs 
+fpath=(
+  $fpath
+  /home/ews/.zen/zsh/scripts
+  /home/ews/.zen/zsh/zle )
+autoload -U zen
+
 source ~/.alias

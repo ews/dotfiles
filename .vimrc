@@ -3,7 +3,6 @@
 " too different from a stock Vim installation. This should feel
 " comfortable to someone used to using vi.
 "
-" Noah Spurrier
 
 " add the following to .profile or .bashrc
 "export EDITOR=vim
@@ -18,7 +17,7 @@ filetype indent on " load indent.vim
 
 set history=1000 " number of commands and search patterns to save
 set viminfo=!,%,'20,/100,:100,s100,n~/.viminfo " options for .viminfo
-"set paste " ignore autoindent and formatoptions while pasting. does not hurt gvim.
+set paste " ignore autoindent and formatoptions while pasting. does not hurt gvim.
 set binary " show control characters (ignore 'fileformat')
 set noautoindent " do not auto indent
 set shiftround " align to standard indent when shifting with < and >
@@ -381,3 +380,13 @@ map <C-Down> :bp<cr>:redraw<cr>
 
 "copy/paste text from other editors
 ":set tw=0 wrap linebreak
+"
+"fuzzyfinder plugin
+"
+map <leader>b :FuzzyFinderBuffer<CR>
+map <leader>f :FuzzyFinderFile<CR>
+
+" bind tab with omnicomplete yay !
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+"change omnicomplete color
+highlight Pmenu guibg=brown gui=bold
