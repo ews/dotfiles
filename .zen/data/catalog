@@ -1,0 +1,13 @@
+zsh/scripts/core/setversionnow,20090324160347;Change the version of the script to the current date
+zsh/scripts/http/cat,20090323191053;Print the content of a http url, useful to download files with only zsh
+zsh/scripts/http/get,20090323191053;Perform a http GET 
+zsh/scripts/http/post,20090323191053;Perform an http POST 
+zsh/scripts/http/urlencode,20090323191053;function to transform a string respecting the RFC 1738
+zsh/scripts/mail/send,20090323191053;Send a mail directly to a SMTP server
+zsh/scripts/zen,20090323191054;main function
+zsh/scripts/zpaste,20090323191053;zpaste is a fonction to paste data to rafb.net others servers are coming
+zsh/scripts/zurl,20090323191053;Send an URL to urlalacon (a tinyurl clone)
+zsh/zle/dirname-current-arg,20090323191053;replace current argument by its parent directory
+zsh/zle/insert-root-prefix,20090323191053;Insert sudo or pfexec in the beginning of the line
+zsh/zle/next-file-nocomp,20090323191053;replace current argument by the next file as if you were
+zsh/zle/previous-file-nocomp,20090323191053;replace current argument by the previous file as if you were
