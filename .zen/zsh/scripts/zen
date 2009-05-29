@@ -1,0 +1,184 @@
+# Don't remove the - in the following line
+# Description: main function
+# vim: set syntax=zsh:
+# Version: 20090323191054
+# Author: asyd, bapt
+# Notes:
+#
+# The use of http/cat must be rewriten to use a global variable
+#
+#setopt no_unset
+#setopt warn_create_global
+REPOSITORY_URL=${REPOSITORY_URL:=http://svn.asyd.net/svn/zsh/branches/zen}
+local CATALOG=$HOME/.zen/data/catalog
+local DEPENDS=$HOME/.zen/data/depends
+local INSTALLED=$HOME/.zen/data/installed
+local subcmd
+local depends package installed to_install check_dep_loop new_packages cinstalled
+[[ ! -z $argv[1] ]] && subcmd=$argv[1]
+# Ok, this part must be rewritten in a more better way
+typeset -A depends cinstalled new_packages
+typeset -a installed to_install
+typeset -i check_dep_loop
+# autoloading require functions
+autoload -U http/cat
+usage() {
+		print "Usage: zen {search (pattern)#,install package,update}"
+		print 
+		print	"Subcommands:"
+		print "\t search: look for a package that match the search"
+		print "\tinstall: install a package"
+		print "\t update: update the catalog"
+}
+# This function check if there are some dependencies for the script passed in first argument
+# We use check_dep_loop to ensure we can't have an infinite loop
+[[ -z $subcmd ]] && usage
+check_deps () {
+	check_dep_loop=${check_dep_loop:=0}
+	if [[ $check_dep_loop -gt 10 ]] ; then
+		print -- "ERR: Too many loops..."
+	else
+		check_dep_loop+=1
+		# Check if package already installed
+		if [[ -z ${(M)installed:#$1} && -z ${(M)to_install:#$1} ]]; then
+			to_install=($to_install $1)
+			# Get dependencies for the package
+			for depend in ${(s:,:)depends[$1]} ; do
+				check_deps $depend
+			done
+		fi
+	fi
+}
+# Install a package by downloading it from the repository
+install_package () {
+	local packages
+	packages=(${${(f)"$(< $CATALOG)"}%%,*})
+	if [[ ! -n ${(M)packages:#$1} ]] {
+		print "ERR: $1 not such package"
+		return 1
+	}
+	print -- "INF: Installing package $1"
+	mkdir -p $HOME/.zen/${1:h}
+	http/cat $REPOSITORY_URL/$1
+	if [[ $http_return_code -eq 200 ]] ; then
+		[[ -f $HOME/.zen/$1 ]] && {
+			print "INF: Removing old script : $HOME/.zen/$1"
+			rm -f $HOME/.zen/$1
+		}
+		print -lr -- $http_result >| $HOME/.zen/$1
+	else
+		print -- "ERR: Invalid return code: ${http_return_code}"
+	fi
+	# Fetch version of the script
+	local buffer
+	buffer=${${(s: :)${(M)${(f)"$(< $HOME/.zen/$1)"}:#\#[[:space:]]Version:[[:space:]]*}}[3]}
+	new_packages[$1]=$buffer
+}
+# Update the file $HOME/.zen/data/installed with the list of installed packages (and theirs versions)
+# TODO: this method should probably be rewritten
+update_installed () {
+	cinstalled=(${(s:,:)${(j:,:)${(f)"$(< $INSTALLED)"}}})
+	# Merge already installed files and new one
+	for package in ${(k)new_packages}
+	{
+		cinstalled[$package]=$new_packages[$package]	
+	}
+	# Finally update the local file with new datas
+	# empty file
+	print -n >| $INSTALLED
+	for package in ${(k)cinstalled}
+	{
+		printf "%s,%s\n" $package $cinstalled[$package] >> $INSTALLED
+	}
+}	
+# Upgrade the list of installed packages if a new version is available
+upgrade_packages () {
+	pkg_to_upgrade=()
+	local -A packages
+	cinstalled=(${(s:,:)${(j:,:)${(f)"$(< $INSTALLED)"}}})
+	packages=(${(kv)${(s:,:)${(j:,:)${${(f)"$(< $CATALOG)"}%;*}}}})
+	for installedpkg (${(k)cinstalled}) {
+		for pkg (${(k)packages}) {
+			if [[ "$installedpkg" = "$pkg" ]] {
+				if [[ $cinstalled[$installedpkg] -lt $packages[$pkg] ]] {
+					print "Script $installedpkg need upgrading: $cinstalled[$installedpkg] -> $packages[$pkg]"
+					pkg_to_upgrade+=$installedpkg
+					break
+				}
+			}
+		}
+	}
+	print -n "Do you want to proceed? "
+	print -n "[y/n] "
+	read -q answer
+	if [[ $answer == "y" ]] {
+		for package ($pkg_to_upgrade) {
+			install_package $package
+		}
+	} else {
+		print "INF: Upgrade Canceled"
+		return 0
+	}
+		
+}
+case $subcmd in
+	"search")
+		local pattern=$2
+		local padding
+		local -A packages results
+		padding=30
+		packages=(${(s:;:)${(j:;:)${(f)"$(< $CATALOG)"}}})
+		results=(${(kv)packages[(I)*$pattern*]})
+		printf "%${padding}s | %s\n" Package Description 
+		print -- ${(l:$COLUMNS::-::-:):-}
+		for package in ${(k)results}
+		do	
+			printf "%${padding}s | %s\n" ${package%,*} ${results[$package]//\'/}
+		done
+	;;
+	"update")
+		# This part MUST BE rewritten
+		print "INF: Updating from $REPOSITORY_URL"
+		zmodload -i zsh/stat
+		for file in catalog depends 
+		do
+			local_file=${(P)${(U)file}}
+			mv -f $local_file ${local_file}.old
+			http/cat $REPOSITORY_URL/data/$file
+			if [[ $http_return_code -eq 200 ]] {
+				print -lr $http_result >| $local_file
+			} else {
+				print -- "ERR: Error while downloading. Return code: $http_return_code"
+				print -- "ERR: Reverting to the previous version"
+				mv -f ${local_file}.old $local_file
+			}
+		done
+	;;
+	"upgrade")
+		print  "INF: Checking scripts to upgrade ..."
+		upgrade_packages
+	;;	
+	"install")
+		package=$2
+		if [[ -z $package ]]; then
+			usage
+			return 1
+		fi
+		installed=(${${(f)"$(< $INSTALLED)"}%%,*})
+		# read dependencies list
+		if [[ -n ${(M)installed:#$package} ]] {
+			print -- "ERR: Package $package already installed. Please use zen upgrade if you want to upgrade."
+			return 1
+		}
+		depends=(${(s:;:)${(j:;:)${(f)"$(< $DEPENDS)"}}})
+		check_deps $package
+		for package in $to_install
+		do
+			install_package $package
+		done
+		update_installed
+	;;
+	*)
+		return 1
+	;;
+esac
