@@ -1,0 +1,194 @@
+Xcursoor.theme: Vanilla-DMZ
+
+Xft.hinting: true
+!Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.dpi: 134
+
+
+!Xft.antialias:           true
+!!Xft.hinting:             true
+Xft.hintstyle:           3
+
+c64*font:                xft:Adore64:autohint=false:antialias=false:size=7
+c64*background:          #3a319c
+c64*foreground:          #7b71d6
+
+xterm*faceName:          inconsolata
+xterm*faceSize:          10
+xterm*geometry:          120x40
+xterm*boldMode:          false
+xterm*cutNewline:        false
+xterm*on4Clicks:         group
+xterm*on5Clicks:         page
+xterm*internalBorder:    1
+xterm*background:        #222222
+xterm*foreground:        #ddccbb
+xterm*metaSendsEscape:   true
+xterm*colorBD:           #ffffff
+xterm*colorBDMode:       true
+xterm*cursorBlink:       false
+xterm*cursorColor:       #ff9900
+xterm*veryBoldColors:    14
+xterm*loginShell:        true
+xterm*charClass:         33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48,63:48,61:48,44:48,38:48,59:48
+xterm*jumpScroll:        true
+xterm*multiScroll:       true
+xterm*saveLines:         5120
+
+
+! URxvt.geometry: 80x25
+URxvt.font: xft:Inconsolata:size=7
+!URXvt.font: Inconsolata
+!URxvt*inheritPixmap: true
+!URxvt*tintColor: gray30
+URxvt.internalBorder: 0
+URxvt.jumpScroll: true
+! URxvt.loginShell: true
+URxvt.perl-ext-common: default,matcher,searchable-scrollback
+URxvt.pointerBlank: true
+URxvt.saveLines: 4000
+URxvt.secondaryScroll: true
+URxvt.scrollBar: false
+!URxvt-ml*scrollBar:		true
+URxvt.scrollBar_floating:	true
+URxvt.scrollBar_right:	true
+URxvt.scrollColor:		#ff0000
+
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt*urlLauncher: /usr/bin/firefox
+URxvt*background: #000010
+URxvt*foreground: Wheat
+URxvt*cursorColor: magenta
+URxvt*colorUL: #c5f779
+URxvt*underlineColor: #c5f779
+URxvt*color0: #000000
+URxvt*color1: #9e1828
+URxvt*color2: #aece92
+URxvt*color3: #968a38
+URxvt*color4: #414171
+URxvt*color5: #963c59
+URxvt*color6: #418179
+URxvt*color7: #bebebe
+URxvt*color8: #666666
+URxvt*color9: #cf6171
+URxvt*color10: #c5f779
+URxvt*color11: #fff796
+URxvt*color12: #4186be
+URxvt*color13: #cf9ebe
+URxvt*color14: #71bebe
+URxvt*color15: #ffffff
+
+
+!URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-] 
+
+
+!black
+*color0:  #222222
+*color8:  #554444
+
+!!red
+*color1:  #884422
+*color9:  #cc5533
+!
+!!green
+*color2:  #778800
+*color10: #88aa22
+!
+!!yellow
+*color3:  #887733
+*color11: #aa9955
+!
+!!blue
+*color4:  #8866cc
+*color12: #9977dd
+!
+!!magneta
+*color5:  #885500
+*color13: #996600
+!
+!!cyan
+*color6:  #5555aa
+*color14: #7777aa
+!
+!!white
+*color7:  #bbaa99
+*color15: #ddccaa
+!
+!xclock*hourColor:     rgb:0/0/0
+xclock*minuteColor:   rgb:8/8/8
+xclock*secondColor:   rgb:b/b/b
+xclock*majorColor:    rgb:0/0/0
+xclock*minorColor:    rgb:6/6/6
+
+xcalc*ti.button1.vertDistance:          4
+xcalc*ti.button2.vertDistance:          4
+xcalc*ti.button3.vertDistance:          4
+xcalc*ti.button4.vertDistance:          4
+xcalc*ti.button5.vertDistance:          4
+xcalc*ti.background:                    gray90
+xcalc*ti.bevel.borderColor:             gray65
+xcalc*ti.bevel.borderWidth:             1
+xcalc*ti.bevel.vertDistance:            4
+xcalc*ti.bevel.defaultDistance:         0
+xcalc*ti.bevel.background:              rgb:b/c/b
+xcalc*ti.bevel.screen*background:       rgb:b/c/b
+xcalc*ti.bevel.screen.borderColor:      rgb:b/c/b
+xcalc*ti.bevel.screen.vertDistance:     10
+xcalc*ti.bevel.screen.horizDistance:    10
+xcalc*ti.bevel.screen*left:             chainLeft
+xcalc*ti.bevel.screen*right:            chainRight
+xcalc*ti.bevel.screen*top:              chainTop
+xcalc*ti.bevel.screen*bottom:           chainBottom
+xcalc*ti.bevel.screen*LCD.foreground:   gray10
+xcalc*ti.bevel.screen*INV.vertDistance: 0
+xcalc*ti.Command.borderColor:           gray65
+xcalc*ti.Command.background:            gray85
+xcalc*ti.Command.foreground:            gray30
+xcalc*ti.button5.background:            rgb:e/b/b
+xcalc*ti.button20.background:           rgb:e/d/c
+xcalc*ti.button25.background:           rgb:e/d/c
+xcalc*ti.button30.background:           rgb:e/d/c
+xcalc*ti.button35.background:           rgb:e/d/c
+xcalc*ti.button40.background:           rgb:b/b/e
+xcalc*ti.button22.background:           gray95
+xcalc*ti.button23.background:           gray95
+xcalc*ti.button24.background:           gray95
+xcalc*ti.button27.background:           gray95
+xcalc*ti.button28.background:           gray95
+xcalc*ti.button29.background:           gray95
+xcalc*ti.button32.background:           gray95
+xcalc*ti.button33.background:           gray95
+xcalc*ti.button34.background:           gray95
+xcalc*ti.button37.background:           gray95
+xcalc*ti.button38.background:           gray95
+xcalc*ti.button39.background:           gray95
+
+xmessage*form.okay.shapeStyle:          rectangle
+xmessage*form.okay.background:          IndianRed
+xmessage*form.okay.foreground:          rgb:e/b/b
+xmessage*message*background:            ivory3
+xmessage*background:                    gray85
+xmessage*foreground:                    gray15
+xmessage*Scrollbar.width:               1
+xmessage*Scrollbar.borderWidth:         0
+xmessage*Text.?.cursorColor:            rgb:d/5/5
+xmessage*Text.borderColor:              gray65
+xmessage*Text*background:               gray95
+xmessage*Command.highlightThickness:    1
+xmessage*Command.internalWidth:         5
+xmessage*Command.internalHeight:        3
+xmessage*Command.borderColor:           gray40
+xmessage*Command.shapeStyle:            Rectangle
+xmessage*Command.background:            gray80
+xmessage*font:                          -*-clean-*-*-*-*-*-*-*-*-*-*-iso8859-2
+
+Emacs.FontBackend: xft
+Emacs.font: Inconsolata-8
+Emacs.toolBar: 0
+Emacs.menuBar: 1
