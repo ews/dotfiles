@@ -10,7 +10,6 @@
 "export PAGER="col -b | view -c 'set ft=man nomod nolist nonumber' -"
 "export MANPAGER="col -b | view -c 'set ft=man nomod nolist nonumber' -"
 
-colorscheme pablo
 set nocompatible " use vim defaults (this should be first in .vimrc)
 filetype plugin on " load ftplugin.vim
 filetype indent on " load indent.vim

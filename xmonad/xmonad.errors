@@ -1,0 +1,17 @@
+
+xmonad.hs:86:14:
+    Warning: Fields of `XPC' not initialised: autoComplete
+    In the expression:
+        XPC
+          {font = "-*-profont-*-*-*-*-11-*-*-*-*-*-iso8859",
+           bgColor = "#111111", defaultText = "", fgColor = "#d5d3a7",
+           bgHLight = "#aecf96", fgHLight = "black", borderColor = "black",
+           promptBorderWidth = 0, position = Bottom, height = 15,
+           historySize = 256}
+    In the definition of `robSPConfig':
+        robSPConfig = XPC
+                        {font = "-*-profont-*-*-*-*-11-*-*-*-*-*-iso8859",
+                         bgColor = "#111111", defaultText = "", fgColor = "#d5d3a7",
+                         bgHLight = "#aecf96", fgHLight = "black", borderColor = "black",
+                         promptBorderWidth = 0, position = Bottom, height = 15,
+                         historySize = 256}

@@ -29,7 +29,7 @@ unsetopt bgnice autoparamslash
 #zmodload -ap zsh/mapfile mapfile
 
 
-PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/home/ews/bin:$PATH"
+PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/home/ews/bin:/usr/lib/ruby/gems/1.8/bin/:/opt/java/bin:$PATH"
 TZ="US/Pacific"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
@@ -65,14 +65,9 @@ unsetopt ALL_EXPORT
 # # aliases
 # # --------------------------------------------------------------------
 
-alias slrn="slrn -n"
 alias man='LC_ALL=C LANG=C man'
-alias f=finger
 alias ll='ls -al'
 alias ls='ls --color=auto '
-alias offlineimap-tty='offlineimap -u TTY.TTYUI'
-alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
-alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
 #if [[ $HOSTNAME == "kamna" ]] {
 #	alias emacs='emacs -l ~/.emacs.kamna'
 #}	
@@ -197,6 +192,15 @@ function gh {
   fi
 }
 
+#connect to craiglist
+function gcl {
+  ssh pablo@threespeed.org $@
+  if [ -t 1 ]; then
+  print -Pn "\e]2;\a"
+  clear
+  stty sane
+  fi
+}
 #screen integration to set caption bar dynamically
 function title {
 if [[ $TERM == "screen" || $TERM == "screen.linux" ]]; then
@@ -244,3 +248,4 @@ fpath=(
 autoload -U zen
 
 source ~/.alias
+TZ='US/Pacific'; export TZ
